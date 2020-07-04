@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+
+dependencies {
+//    implementation group: 'com.google.auto.service', name: 'auto-service', version: '1.0-rc7'
+    implementation group: 'com.squareup', name: 'javapoet', version: '1.8.0'
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
