@@ -1,6 +1,6 @@
 package com.zhou.annoapp;
 
-import com.lib.annotation.MapCollection;
+import com.lib.mapper.Mapper;
 
 import org.junit.Test;
 
@@ -12,23 +12,23 @@ public class ModuleTest {
 
     @Test
     public void testMap() {
-        Class a = MapCollection.findItem("testA");
-        System.out.println(a);
-        build(a);
+        Class a = Mapper.findItem("testA");
+//        System.out.println(a);
+//        build(a);
+//
+//        a = Mapper.findItem("love", "testA");
+//        System.out.println(a);
+//        build(a);
+//
+//        a = Mapper.findItem("_default", "testB", false);
+//        System.out.println(a);
+//        build(a);
+//
+//        a = Mapper.findItem("kk", "testB", true);
+//        System.out.println(a);
+//        build(a);
 
-        a = MapCollection.findItem("love", "testA");
-        System.out.println(a);
-        build(a);
-
-        a = MapCollection.findItem("_default", "testB", false);
-        System.out.println(a);
-        build(a);
-
-        a = MapCollection.findItem("kk", "testB", true);
-        System.out.println(a);
-        build(a);
-
-        System.out.println(MapCollection.string());
+        System.out.println(Mapper.string());
     }
 
     private void build(Class clz) {

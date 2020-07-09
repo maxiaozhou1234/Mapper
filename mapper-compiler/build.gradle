@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation group: 'com.squareup', name: 'javapoet', version: '1.8.0'
+    implementation project(":mapper-annotation")
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"

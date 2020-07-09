@@ -1,4 +1,4 @@
-package com.lib.annotation;
+package com.lib.mapper;
 
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.CodeBlock;
@@ -28,7 +28,6 @@ import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
-//@AutoService(Processor.class)
 public class MapProcessor extends AbstractProcessor {
 
     private Types typeUtils;
@@ -52,7 +51,7 @@ public class MapProcessor extends AbstractProcessor {
     @Override
     public Set<String> getSupportedAnnotationTypes() {
         Set<String> sets = new LinkedHashSet<>();
-        sets.add("com.lib.annotation.MapType");
+        sets.add(MapType.class.getCanonicalName());
         return sets;
     }
 

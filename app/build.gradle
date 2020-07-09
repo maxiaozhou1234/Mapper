@@ -29,6 +29,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
 
-    implementation project(path: ':lib')
-    annotationProcessor project(path: ':lib')
+//    implementation project(path: ':lib')
+//    annotationProcessor project(path: ':lib')
+
+    implementation project(':mapper')
+    annotationProcessor project(':mapper-compiler')
 }

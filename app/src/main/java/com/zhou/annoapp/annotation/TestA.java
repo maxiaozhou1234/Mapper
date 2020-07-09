@@ -1,7 +1,7 @@
 package com.zhou.annoapp.annotation;
 
 
-import com.lib.annotation.MapType;
+import com.lib.mapper.MapType;
 
 /**
  * Created by mxz on 2020/7/3.

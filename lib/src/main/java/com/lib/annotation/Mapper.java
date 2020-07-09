@@ -1,14 +1,34 @@
 package com.lib.annotation;
 
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Created by mxz on 2020/7/3.
  */
-public class MapCollection {
+public class Mapper {
 
-    private final static HashMap<String, HashMap<String, Class>> collection = TypeMap$Data.map;
+    private final static HashMap<String, HashMap<String, Class>> collection;
+
+    static {
+        System.out.println("static loading");
+        HashMap<String, HashMap<String, Class>> temp = null;
+        try {
+            Class typeMap = Class.forName("com.lib.annotation.TypeMap$Data");
+            Object instance = typeMap.newInstance();
+            Field map = typeMap.getField("map");
+            map.setAccessible(true);
+            //noinspection unchecked
+            temp = (HashMap<String, HashMap<String, Class>>) map.get(instance);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            temp = new HashMap<>();
+        } finally {
+            collection = temp;
+        }
+    }
 
     public static Class findItem(String typeName) {
         return findItem(null, typeName, false);
