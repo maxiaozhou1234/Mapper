@@ -12,7 +12,6 @@ public class Mapper {
     private final static HashMap<String, HashMap<String, Class>> collection;
 
     static {
-        System.out.println("static loading");
         HashMap<String, HashMap<String, Class>> temp = null;
         try {
             Class typeMap = Class.forName("com.lib.mapper.TypeMap$Data");
