@@ -9,7 +9,7 @@ HashMap&lt;String,HashMap&lt;String,Class> 注解，释放双手
 2. 通过 Map 处理成键值对，但要需要自己构建 Map 关系
 
 这就是这个简单注解使用的契机。
-项目已经有十几条 if-else，逻辑简单，清晰明了，但每次都需要再建 else-if，使用 Map 代替的话，又不想新建业务类后再添加一次到 Map，所以决定使用注解实现自动生成关系图，以上。
+项目已经有十几条 if-else，但每次都需要再建 else-if，使用 Map 代替的话，又不想新建业务类后再添加一次到 Map，所以决定使用注解实现自动生成关系图，以上。
 
 ### 如何使用
 
@@ -18,8 +18,8 @@ HashMap&lt;String,HashMap&lt;String,Class> 注解，释放双手
 1. android 项目 build.gradle 添加依赖，注解器
 ```
 dependencies {
-	implementation project(path: ':lib')
-    annotationProcessor project(path: ':lib')
+    implementation project(':mapper')
+    annotationProcessor project(':mapper-compiler')
 }
 ```
 2. 使用注解
@@ -52,11 +52,11 @@ public class TestC {
 ```
 3. 调用
 ```
-	MapCollection.findItem("testA");//返回null，默认分组没有这个key
-	MapCollection.findItem("love", "testA");//返回对应 class
-	MapCollection.findItem("_default", "testB", false);//返回对应 class
-	MapCollection.findItem("kk", "testB", false);//返回null,kk 没有这个key，并且不在默认分组找
-	MapCollection.findItem("kk", "testB", true);//返回对应 class
+	Mapper.findItem("testA");//返回null，默认分组没有这个key
+	Mapper.findItem("love", "testA");//返回对应 class
+	Mapper.findItem("_default", "testB", false);//返回对应 class
+	Mapper.findItem("kk", "testB", false);//返回null,kk 没有这个key，并且不在默认分组找
+	Mapper.findItem("kk", "testB", true);//返回对应 class
 	
 	//方法说明
 	public static Class findItem(String groupName, String typeName, boolean findToEnd) {
