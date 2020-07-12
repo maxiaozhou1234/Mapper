@@ -1,4 +1,5 @@
 apply plugin: 'java-library'
+apply plugin: 'maven'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -6,3 +7,20 @@ dependencies {
 
 sourceCompatibility = "7"
 targetCompatibility = "7"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_URL) {
+                authentication(userName: USER_NAME, password: USER_PASSWORD)
+            }
+            pom.project {
+                groupId GROUP_ID
+                artifactId 'mapper-annotation'
+                version '1.0.2'
+                packaging 'jar'
+                description 'mapper-annotation'
+            }
+        }
+    }
+}

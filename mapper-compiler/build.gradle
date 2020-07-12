@@ -1,9 +1,28 @@
 apply plugin: 'java-library'
+apply plugin: 'maven'
 
 dependencies {
     implementation group: 'com.squareup', name: 'javapoet', version: '1.8.0'
     implementation project(":mapper-annotation")
+//    implementation 'com.lib:mapper-annotation:1.0.2'
 }
 
 sourceCompatibility = "7"
 targetCompatibility = "7"
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_URL) {
+                authentication(userName: USER_NAME, password: USER_PASSWORD)
+            }
+            pom.project {
+                groupId GROUP_ID
+                artifactId 'mapper-compiler'
+                version '1.0.1'
+                packaging 'jar'
+                description 'mapper-compiler'
+            }
+        }
+    }
+}

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 android {
     compileSdkVersion 29
@@ -24,4 +25,35 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     api project(':mapper-annotation')
+//    implementation 'com.lib:mapper-annotation:1.0.2'
+//    compile project(path: ':mapper-annotation')
+}
+
+task sourcesJar(type: Jar) {
+    baseName "mapper"
+    //分类器，用于区别其他jar包
+    classifier "sources"
+    //从main源集中的所有代码
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: MAVEN_URL) {
+                authentication(userName: USER_NAME, password: USER_PASSWORD)
+            }
+            pom.project {
+                groupId GROUP_ID
+                artifactId 'mapper'
+                version '1.0.0'
+                packaging 'aar'
+                description 'mapper'
+            }
+        }
+    }
 }
