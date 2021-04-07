@@ -57,36 +57,36 @@ public class TestC {
 }
 ```
 3. 编译后输出结果
-	```
-	public final class TypeMap$Data {
-	  public static HashMap<String, HashMap<String, Class>> map = new HashMap<String, HashMap<String, Class>>();
+```
+public final class TypeMap$Data {
+  public static HashMap<String, HashMap<String, Class>> map = new HashMap<String, HashMap<String, Class>>();
 
-	  static {
-	    HashMap<String, Class> item;
-	    item = new HashMap<String, Class>();
-	    item.put("testA",com.zhou.annoapp.annotation.TestA.class);
-	    map.put("love", item);
-	    item = new HashMap<String, Class>();
-	    item.put("a",com.zhou.annoapp.annotation.TestB.class);
-	    item.put("testB",com.zhou.annoapp.annotation.TestB.class);
-	    item.put("b",com.zhou.annoapp.annotation.TestB.class);
-	    item.put("c",com.zhou.annoapp.annotation.TestB.class);
-	    item.put("testC",com.zhou.annoapp.annotation.TestC.class);
-	    item.put("i know test",com.zhou.annoapp.annotation.TestD.class);
-	    map.put("_default", item);
-	  }
-	}
-	```
+  static {
+    HashMap<String, Class> item;
+    item = new HashMap<String, Class>();
+    item.put("testA",com.zhou.annoapp.annotation.TestA.class);
+    map.put("love", item);
+    item = new HashMap<String, Class>();
+    item.put("a",com.zhou.annoapp.annotation.TestB.class);
+    item.put("testB",com.zhou.annoapp.annotation.TestB.class);
+    item.put("b",com.zhou.annoapp.annotation.TestB.class);
+    item.put("c",com.zhou.annoapp.annotation.TestB.class);
+    item.put("testC",com.zhou.annoapp.annotation.TestC.class);
+    item.put("i know test",com.zhou.annoapp.annotation.TestD.class);
+    map.put("_default", item);
+  }
+}
+```
 4. 调用
 ```
-	Mapper.findItem("testA");//返回null，默认分组没有这个key
-	Mapper.findItem("love", "testA");//返回对应 class
-	Mapper.findItem("_default", "testB", false);//返回对应 class
-	Mapper.findItem("kk", "testB", false);//返回null,kk 没有这个key，并且不在默认分组找
-	Mapper.findItem("kk", "testB", true);//返回对应 class
-	
-	//方法说明
-	public static Class findItem(String groupName, String typeName, boolean findToEnd) {
-		//
-	}
+Mapper.findItem("testA");//返回null，默认分组没有这个key
+Mapper.findItem("love", "testA");//返回对应 class
+Mapper.findItem("_default", "testB", false);//返回对应 class
+Mapper.findItem("kk", "testB", false);//返回null,kk 没有这个key，并且不在默认分组找
+Mapper.findItem("kk", "testB", true);//返回对应 class
+
+//方法说明
+public static Class findItem(String groupName, String typeName, boolean findToEnd) {
+	//
+}
 ```
