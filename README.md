@@ -23,7 +23,9 @@ dependencies {
 }
 ```
 2. 使用注解
-	* class TestA，存放分组 love，标记为 testA
+
+* class TestA，存放分组 love，标记为 testA
+
 ```
 @MapType(name = "testA", group = "love")
 public class TestA {
@@ -32,7 +34,9 @@ public class TestA {
     }
 }
 ```
-	* class TestB，存放默认分组，标记为 testB，array 多个标签使用同个类
+
+* class TestB，存放默认分组，标记为 testB，array 多个标签使用同个类
+
 ```
 @MapType(name = "testB", array = {"a", "b", "c"})
 public class TestB {
@@ -41,7 +45,9 @@ public class TestB {
     }
 }
 ```
-	* class TestC，存放默认分组，标记为 testC
+
+* class TestC，存放默认分组，标记为 testC
+
 ```
 @MapType(name = "testC")
 public class TestC {
@@ -50,7 +56,28 @@ public class TestC {
     }
 }
 ```
-3. 调用
+3. 编译后输出结果
+	```
+	public final class TypeMap$Data {
+	  public static HashMap<String, HashMap<String, Class>> map = new HashMap<String, HashMap<String, Class>>();
+
+	  static {
+	    HashMap<String, Class> item;
+	    item = new HashMap<String, Class>();
+	    item.put("testA",com.zhou.annoapp.annotation.TestA.class);
+	    map.put("love", item);
+	    item = new HashMap<String, Class>();
+	    item.put("a",com.zhou.annoapp.annotation.TestB.class);
+	    item.put("testB",com.zhou.annoapp.annotation.TestB.class);
+	    item.put("b",com.zhou.annoapp.annotation.TestB.class);
+	    item.put("c",com.zhou.annoapp.annotation.TestB.class);
+	    item.put("testC",com.zhou.annoapp.annotation.TestC.class);
+	    item.put("i know test",com.zhou.annoapp.annotation.TestD.class);
+	    map.put("_default", item);
+	  }
+	}
+	```
+4. 调用
 ```
 	Mapper.findItem("testA");//返回null，默认分组没有这个key
 	Mapper.findItem("love", "testA");//返回对应 class
